@@ -5,7 +5,9 @@ use configuration::Configuration;
 
 mod api;
 mod configuration;
+mod clients;
 mod database;
+mod error;
 
 
 const VERSION: &str = env!("CARGO_PKG_VERSION");
@@ -28,20 +30,20 @@ async fn main() {
 
     tracing::info!("Service Version: {}", VERSION);
 
-    let db_connection = database::get_db_connection(&configuration)
-        .await
-        .expect("Failed to setup database connection!");
+    // let db_connection = database::get_db_connection(&configuration)
+    //     .await
+    //     .expect("Failed to setup database connection!");
     
     // run database migrations as part of application startup
-    database::migrate(&configuration)
-        .await
-        .expect("Failed to run database migrations!");
+    // database::migrate(&configuration)
+    //     .await
+    //     .expect("Failed to run database migrations!");
 
     let bind_to = format!("{}:{}", configuration.http_host, configuration.http_port);
 
     tracing::info!("Starting server on {}", bind_to);
     let api = api::Api::new(
-        db_connection,
+        // db_connection,
         configuration
     );
 
