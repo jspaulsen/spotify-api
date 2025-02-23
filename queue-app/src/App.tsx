@@ -99,7 +99,7 @@ function TitleBar() {
     <Box>
       <Card sx={{ backgroundColor: 'lightblue', paddingLeft: '0.5rem' }}>
         <Typography variant="h4" component="h1">
-          THE FUCKING QUEUE
+          Cannibal's Queue
         </Typography>
       </Card>
     </Box>
@@ -123,7 +123,7 @@ function App() {
           </Typography>
         </Box>
 
-        <Box sx={{ flex: 1, overflow: 'auto', maxHeight: '51%' }}>
+        <Box sx={{ flex: 1, overflow: 'auto', maxHeight: '45%' }}>
           <QueueCard title="Peepee" artist="Poo" /> 
           <QueueCard title="Peepee" artist="Poo" /> 
           <QueueCard title="Peepee" artist="Poo" /> 

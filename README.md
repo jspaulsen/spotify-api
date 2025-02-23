@@ -1,2 +1,7 @@
 # spotify-api
-Sp
+
+## Queue App Development
+
+```bash
+npm run dev
+```
