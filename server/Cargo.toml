@@ -1,0 +1,14 @@
+[package]
+name = "server"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+axum = "0.8.1"
+envconfig = "0.11.0"
+log = "0.4.26"
+sea-orm = { version = "1.1.5", features = ["sqlx-postgres", "mock"]}
+sqlx = "0.8.3"
+tokio = {version = "1.43.0", features = ["rt-multi-thread", "rt"]}
+tracing = "0.1.41"
+tracing-subscriber = { version = "0.3.19",  features = ["json", "env-filter"] }
