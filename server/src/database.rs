@@ -8,6 +8,7 @@ use sqlx::{
     Error,
     migrate::Migrator,
     postgres::PgPoolOptions,
+    sqlite::SqlitePoolOptions,
 };
 
 use crate::configuration::Configuration;
@@ -28,12 +29,12 @@ pub async fn get_db_connection(config: &Configuration) -> Result<DatabaseConnect
 }
 
 
-pub async fn migrate(config: &Configuration) -> Result<(), Error> {
-    let pool = PgPoolOptions::new()
-        .connect(&config.database_url)
-        .await?;
+// pub async fn migrate(config: &Configuration) -> Result<(), Error> {
+//     let pool = PgPoolOptions::new()
+//         .connect(&config.database_url)
+//         .await?;
     
-    MIGRATE.run(&pool)
-        .await
-        .map_err(|e| Error::Migrate(Box::new(e)))
-}
+//     MIGRATE.run(&pool)
+//         .await
+//         .map_err(|e| Error::Migrate(Box::new(e)))
+// }

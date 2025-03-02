@@ -40,23 +40,16 @@ impl Spotify {
 
         /* TODO: This should probably redirect to the application in some fashion / form / capacity */
         if let Some(error) = maybe_error {
-            return Ok(
-                Response::builder()
-                    .status(StatusCode::BAD_REQUEST)
-                    .body(format!("Error: {}", error))
-                    .unwrap()
-            );
+            return Err(HttpError::internal_server_error(Some(error))); // We probably don't want to return the error to the user.
         }
 
         let code = params.get("code")
             .ok_or(HttpError::BadRequest("Missing code parameter".to_string()))?;
 
-        /* TODO: InternalServerError is a bad fit for this; probably 400 instead */
-        /* Likely better to handle this by checking response codes; 4xx indicates a borked code */
         let token_response = spotify_client
             .exchange_code(code)
             .await
-            .map_err(|e| HttpError::InternalServerError(e.to_string()))?;
+            .map_err(HttpError::from)?;
 
         /* TODO: store the access and refresh tokens somewhere */
         Ok(

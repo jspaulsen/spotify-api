@@ -40,8 +40,8 @@ async fn main() {
     //     .expect("Failed to run database migrations!");
 
     let bind_to = format!("{}:{}", configuration.http_host, configuration.http_port);
-
     tracing::info!("Starting server on {}", bind_to);
+
     let api = api::Api::new(
         // db_connection,
         configuration
